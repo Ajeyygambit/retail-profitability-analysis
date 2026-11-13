@@ -1,0 +1,50 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Retail Profitability Analysis — Azam Azhan</title>
+<style>
+:root{--bg:#fbfaf7;--ink:#181816;--muted:#6b6b64;--line:#e6e4dd;--accent:#0f6b52;--bad:#b23a2f}
+@media (prefers-color-scheme:dark){:root{--bg:#12120f;--ink:#f2efe7;--muted:#a3a096;--line:#2b2b26;--accent:#5fd3ac;--bad:#e0786b}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.w{max-width:820px;margin:0 auto;padding:56px 20px 72px}
+h1{font-size:30px;letter-spacing:-.02em;margin:0 0 10px}h2{font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:36px 0 10px}
+p{margin:0 0 14px}.lead{font-size:18px;color:var(--muted)}
+a{color:var(--accent)}
+.cta{display:inline-block;margin:8px 10px 0 0;padding:11px 18px;border-radius:10px;border:1px solid var(--line);text-decoration:none;color:var(--ink);font-weight:600}
+.cta.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin:8px 0 4px}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+td.n{text-align:right;font-variant-numeric:tabular-nums}
+.note{font-size:13.5px;color:var(--muted);border-top:1px solid var(--line);margin-top:40px;padding-top:16px}
+</style></head><body><div class="w">
+<h1>Retail performance &amp; profitability</h1>
+<p class="lead">Where does four years of retail profit actually come from — and where does it leak?</p>
+<p>9,994 order lines, 5,009 orders, 2015–2018. The published file ships with two extra blocks appended after the
+data: a four-row people list and an 800-row returns list. A naive import breaks on the first and silently loses the
+second. Both are handled here, and the returns block turned out to matter.</p>
+
+<a class="cta primary" href="dashboard/">Open the dashboard</a>
+<a class="cta" href="memo.md">Read the memo</a>
+<a class="cta" href="findings-numbers.md">Every number</a>
+<a class="cta" href="sql/02_analysis.sql">The SQL</a>
+
+<h2>What the analysis found</h2>
+<table>
+<tr><th>Finding</th><th class="n">Worth</th></tr>
+<tr><td>Discounts above 20% lose money on 91–100% of lines</td><td class="n">−$135,376</td></tr>
+<tr><td>16.3% of products lose money and carry 24.2% of sales</td><td class="n">−$77,068</td></tr>
+<tr><td>Furniture earns 2.49% against Technology's 17.40%</td><td class="n">Tables −$17,725</td></tr>
+<tr><td>Returns are 8.11% of profit and invisible in the reported margin</td><td class="n">$23,232</td></tr>
+<tr><td>November is 5.9× February in sales, but only third in profit</td><td class="n">10.06% margin</td></tr>
+</table>
+
+<h2>What is in the repository</h2>
+<p><code>sql/01_clean.sql</code> splits the junk blocks into <code>orders</code> and <code>returns</code>.
+<code>sql/02_analysis.sql</code> answers the four business questions. <code>dashboard/</code> is a self-contained
+interactive page (no server). <code>memo.md</code> is the write-up a manager would read.
+<code>powerbi/</code> holds the star-schema spec and DAX pack; <code>excel/</code> the Power Query recipe.</p>
+
+<p class="note">Data: Tableau <em>Sample Superstore</em> public dataset, synthetic US retail. Not company data — the
+cleaning, analysis and recommendations are mine. Every figure traces to a query in <code>sql/</code>.
+Analysis and build by Azam Azhan.</p>
+</div></body></html>
